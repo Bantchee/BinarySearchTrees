@@ -56,12 +56,24 @@ const Tree = (arr) => {
         return recurse(arr, 0, arr.length - 1);
     };
 
+    const prettyPrint = (node, prefix = '', isLeft = true) => {
+        if (node.rightNode !== null) {
+          prettyPrint(node.rightNode, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+        }
+        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.value}`);
+        if (node.leftNode !== null) {
+          prettyPrint(node.leftNode, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+        }
+    };
+
     let root = buildTree(arr, 0, arr.length - 1);
+
 
     return {
         root,
         buildTree,
         removeDuplicates,
+        prettyPrint,
     };
 }
 
@@ -70,4 +82,4 @@ let b = Tree([]);
 console.log(b.removeDuplicates([1,2,3,4,5]));
 console.log(b.removeDuplicates([1,1,1,1,2,2,2,3,4,4,4,4,4,5]));
 
-console.log(b.buildTree([1,2,3,4,5]));
+b.prettyPrint(b.buildTree([1,2,3,4,5]));
