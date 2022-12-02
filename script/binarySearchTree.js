@@ -7,12 +7,12 @@ const Tree = (arr) => {
                 return []
             }
             else if(arr[0] == filter) {
-                arr.splice(0,1)
+                arr.splice(0,1);
                 return [].concat(recurse(arr, filter));
             }
             else {
                 let val = arr[0];
-                arr.splice(0,1)
+                arr.splice(0,1);
                 return [val].concat(recurse(arr, val));
             }
         }
@@ -66,20 +66,56 @@ const Tree = (arr) => {
         }
     };
 
-    let root = buildTree(arr, 0, arr.length - 1);
+    const insertValue = (val) => {
+        const rec = (node) => {
+            if(node == null) {
+                node = n.Node(val);
+                return node;
+            }
 
+            if(val < node.value) {
+                node.leftNode = rec(node.leftNode);
+            }
+            else {
+                node.rightNode = rec(node.rightNode);
+            }
+
+            return node;
+        };
+        return rec(root);
+    }
+
+    const deleteValue = (value) => {
+        return null;
+    }
+
+    let root = buildTree(arr, 0, arr.length - 1);
 
     return {
         root,
         buildTree,
         removeDuplicates,
         prettyPrint,
+        insertValue,
+        deleteValue,
     };
 }
 
-let b = Tree([]);
+let b = Tree([1,2,3,4,5]);
 
-console.log(b.removeDuplicates([1,2,3,4,5]));
-console.log(b.removeDuplicates([1,1,1,1,2,2,2,3,4,4,4,4,4,5]));
+// console.log(b.removeDuplicates(b.root));
+// // console.log(b.removeDuplicates([1,1,1,1,2,2,2,3,4,4,4,4,4,5]));
 
-b.prettyPrint(b.buildTree([1,2,3,4,5]));
+b.prettyPrint(b.root);
+
+b.root = b.insertValue(30);
+b.prettyPrint(b.root);
+
+b.root = b.insertValue(31);
+b.prettyPrint(b.root);
+
+b.root = b.insertValue(14);
+b.prettyPrint(b.root);
+
+b.root = b.insertValue(17);
+b.prettyPrint(b.root);
