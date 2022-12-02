@@ -1,4 +1,4 @@
-const node = (value) => {
+const Node = (value) => {
     return {
         value,
         leftNode: null,
@@ -6,4 +6,4 @@ const node = (value) => {
     }
 }
 
-module.exports = {node}
+module.exports = {Node}
