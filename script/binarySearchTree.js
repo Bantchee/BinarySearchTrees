@@ -1,22 +1,6 @@
 const n = require('./node');
 
 const Tree = (arr) => {
-    // IN > OUT: Num-Array, Num, Num > Node
-    // arr.sort();
-    // removeDuplicates(arr);
-    // recurseBuildTree(arr, 0, arr.length - 1);
-        // If start > end
-            // return null
-        // mid = arr.length / 2
-        // node = n.Node(arr[mid])
-        // node.leftNode = buildTree(arr.splice(start, mid), start, mid);
-        // node.rightNode = buildTree(arr.splice(mid, end), mid, end);
-    const buildTree = (arr, start, end) => {
-        return null;
-    };
-
-    let root = buildTree(arr, 0, arr.length - 1);
-
     const removeDuplicates = (arr) => {
         const recurse = (arr, filter = null) => {
             if(arr.length === 0) {
@@ -32,19 +16,47 @@ const Tree = (arr) => {
                 return [val].concat(recurse(arr, val));
             }
         }
-        // let currentFilter;
-        
-        // arr.forEach((element, index) => {
-        //     if(currentFilter == element) {
-        //         arr.splice(index, index);
-        //     }      
-        //     else {
-        //         currentFilter = element;
-        //     }      
-        // });
 
         return recurse(arr);
     }
+
+    // IN > OUT: Num-Array, Num, Num > Node
+    // arr.sort();
+    // removeDuplicates(arr);
+    // recurseBuildTree(arr, 0, arr.length - 1);
+        // If start > end
+            // return null
+        // mid = arr.length / 2
+        // node = n.Node(arr[mid])
+        // node.leftNode = buildTree(arr.splice(start, mid), start, mid);
+        // node.rightNode = buildTree(arr.splice(mid, end), mid, end);
+    const buildTree = (arr) => {
+        arr.sort();
+        arr = removeDuplicates(arr);
+
+        const recurse = (arr, start, end) => {
+            if(start > end) {
+                return null;
+            }
+
+            let mid = parseInt((start + end) / 2);
+
+            // console.log("Mid:", arr[mid]);
+            let node = n.Node(arr[mid]);
+
+            node.leftNode = recurse(arr, start, mid - 1);
+            // console.log("Left:", arr.slice(start, mid));
+
+            node.rightNode = recurse(arr, mid + 1, end);
+            // console.log("right:", arr.slice(mid+1, end));
+
+            return node;
+        }
+
+        return recurse(arr, 0, arr.length - 1);
+    };
+
+    let root = buildTree(arr, 0, arr.length - 1);
 
     return {
         root,
@@ -57,3 +69,5 @@ let b = Tree([]);
 
 console.log(b.removeDuplicates([1,2,3,4,5]));
 console.log(b.removeDuplicates([1,1,1,1,2,2,2,3,4,4,4,4,4,5]));
+
+console.log(b.buildTree([1,2,3,4,5]));
