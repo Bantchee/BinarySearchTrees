@@ -142,6 +142,34 @@ const Tree = (arr) => {
             node = node.leftNode;
         }
         return minv;
+    };
+
+    // if node == null
+        // return null
+
+    // if value < node.value
+        // rec(value, node.left)
+    // else if value > node.value
+        // rec(value, node.right)
+    
+    // return node
+    const find = (value) => {
+        const rec = (root) => {
+            if(root == null) {
+                return null
+            }
+
+            if(value < root.value) {
+                return rec(root.leftNode);
+            }
+            else if(value > root.value) {
+                return rec(root.rightNode);
+            } else {
+                return root;
+            }
+        }
+
+        return rec(root);
     }
 
     let root = buildTree(arr, 0, arr.length - 1);
@@ -153,6 +181,7 @@ const Tree = (arr) => {
         prettyPrint,
         insertValue,
         deleteValue,
+        find,
     };
 }
 
@@ -180,3 +209,6 @@ b.prettyPrint(b.root);
 
 b.deleteValue(3);
 b.prettyPrint(b.root);
+
+b.prettyPrint(b.root);
+b.prettyPrint(b.find(4));
