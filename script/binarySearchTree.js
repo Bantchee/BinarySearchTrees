@@ -4,7 +4,7 @@ const Tree = (arr) => {
     const removeDuplicates = (arr) => {
         const recurse = (arr, filter = null) => {
             if(arr.length === 0) {
-                return []
+                return [];
             }
             else if(arr[0] == filter) {
                 arr.splice(0,1);
@@ -170,7 +170,50 @@ const Tree = (arr) => {
         }
 
         return rec(root);
-    }
+    };
+
+    const levelOrder = (func = (x) => x) => {
+        const queue = [root];
+        const result = [];
+        
+        // In > Out : Node > Array
+        const rec = () => {
+            if(queue.length == 0) {
+                return;
+            }
+            else if(queue[0] == null) {
+                queue.shift();
+                rec();
+            }
+            else {
+                let currentNode = queue.shift();
+
+                result.push(func(currentNode.value));
+                queue.push(currentNode.leftNode);
+                queue.push(currentNode.rightNode);
+
+                rec();
+            }
+        };
+
+        rec();
+
+        return result;
+    };
+
+    const inorder = func => {};
+
+    const preorder = func => {};
+
+    const postorder = func => {};
+
+    const height = node => {};
+
+    const depth = node => {};
+
+    const isBalanced = () => {};
+
+    const rebalance = () => {};
 
     let root = buildTree(arr, 0, arr.length - 1);
 
@@ -182,33 +225,36 @@ const Tree = (arr) => {
         insertValue,
         deleteValue,
         find,
+        levelOrder,
     };
 }
 
-let b = Tree([1,2,3,4,5]);
+// let b = Tree([1,2,3]);
 
-// console.log(b.removeDuplicates(b.root));
-// // console.log(b.removeDuplicates([1,1,1,1,2,2,2,3,4,4,4,4,4,5]));
+let b = Tree([1,1,2,3,4,5]);
 
 b.prettyPrint(b.root);
 
 b.insertValue(30);
-b.prettyPrint(b.root);
+// b.prettyPrint(b.root);
 
 b.insertValue(31);
-b.prettyPrint(b.root);
+// b.prettyPrint(b.root);
 
 b.insertValue(14);
-b.prettyPrint(b.root);
+// b.prettyPrint(b.root);
 
 b.insertValue(17);
-b.prettyPrint(b.root);
+// b.prettyPrint(b.root);
 
 b.deleteValue(17);
-b.prettyPrint(b.root);
+// b.prettyPrint(b.root);
 
 b.deleteValue(3);
-b.prettyPrint(b.root);
+// b.prettyPrint(b.root);
+
+// b.prettyPrint(b.root);
+// b.prettyPrint(b.find(4));
 
 b.prettyPrint(b.root);
-b.prettyPrint(b.find(4));
+console.log(b.levelOrder());
