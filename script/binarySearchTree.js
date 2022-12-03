@@ -201,11 +201,50 @@ const Tree = (arr) => {
         return result;
     };
 
-    const inorder = func => {};
+    const inorder = (func = (x) => x) => {
+        let result = [];
 
-    const preorder = func => {};
+        const rec = (root) => {
+            if(root == null) {
+                return;
+            }
+            rec(root.leftNode);
+            result.push(func(root.value));
+            rec(root.rightNode);
+        }
+        rec(root)
+        return result;
+    };
 
-    const postorder = func => {};
+    const preorder = (func = (x) => x) => {
+        let result = [];
+
+        const rec = (root) => {
+            if(root == null) {
+                return;
+            }
+            result.push(func(root.value));
+            rec(root.leftNode);
+            rec(root.rightNode);
+        }
+        rec(root)
+        return result;
+    };
+
+    const postorder = (func = (x) => x) => {
+        let result = [];
+
+        const rec = (root) => {
+            if(root == null) {
+                return;
+            }
+            rec(root.leftNode);
+            rec(root.rightNode);
+            result.push(func(root.value));
+        }
+        rec(root)
+        return result;
+    };
 
     const height = node => {};
 
@@ -226,6 +265,13 @@ const Tree = (arr) => {
         deleteValue,
         find,
         levelOrder,
+        inorder,
+        preorder,
+        postorder,
+        height,
+        depth,
+        isBalanced,
+        rebalance,
     };
 }
 
@@ -257,4 +303,10 @@ b.deleteValue(3);
 // b.prettyPrint(b.find(4));
 
 b.prettyPrint(b.root);
-console.log(b.levelOrder());
+console.log("Level Order Traversal: ", b.levelOrder());
+
+console.log("Inorder Traversal: ", b.inorder());
+
+console.log("Preorder Traversal: ", b.preorder());
+
+console.log("Postorder Traversal: ", b.postorder());
