@@ -82,11 +82,66 @@ const Tree = (arr) => {
 
             return node;
         };
-        return rec(root);
+        root = rec(root);
     }
 
+    // If node == null (base case)
+        // return node
+
+    // If value < node.value
+        // node.leftNode = deleteRec(node.leftNode, value);
+    // else If value > node.value
+        // node.rightNode = deleteRec(node.rightNode, value);
+    // Else
+        // If node.left == null
+            // return node.right;
+        // If node.right == null
+            // return node.left;
+
+        // node.value = minValue(node.right);
+
+        // node.right = deleteRec(node.right, node.value)
+
+    // return node;
+
     const deleteValue = (value) => {
-        return null;
+        const deleteRec = (value, node) => {
+            if(node == null) {
+                return node;
+            }  
+    
+            if(value < node.value) {
+                node.leftNode = deleteRec(value, node.leftNode);
+            }
+            else if(value > node.value) {
+                node.rightNode = deleteRec(value, node.rightNode);
+            }
+            else {
+                if(node.leftNode == null) {
+                    return node.rightNode;
+                }   
+                else if(node.rightNode == null) {
+                    return node.leftNode;
+                }
+    
+                node.value = minValue(node.rightNode);
+    
+                node.rightNode = deleteRec(node.value, node.rightNode);
+            }
+    
+            return node;
+        };
+
+        root = deleteRec(value, root);
+    };
+
+    const minValue = (node) => {
+        let minv = node.value;
+        while(node.leftNode != null) {
+            minv = node.leftNode.value;
+            node = node.leftNode;
+        }
+        return minv;
     }
 
     let root = buildTree(arr, 0, arr.length - 1);
@@ -108,14 +163,20 @@ let b = Tree([1,2,3,4,5]);
 
 b.prettyPrint(b.root);
 
-b.root = b.insertValue(30);
+b.insertValue(30);
 b.prettyPrint(b.root);
 
-b.root = b.insertValue(31);
+b.insertValue(31);
 b.prettyPrint(b.root);
 
-b.root = b.insertValue(14);
+b.insertValue(14);
 b.prettyPrint(b.root);
 
-b.root = b.insertValue(17);
+b.insertValue(17);
+b.prettyPrint(b.root);
+
+b.deleteValue(17);
+b.prettyPrint(b.root);
+
+b.deleteValue(3);
 b.prettyPrint(b.root);
