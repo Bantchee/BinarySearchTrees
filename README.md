@@ -5,7 +5,7 @@
 * Tree - takes an array and constructs a binary search tree using Node factory
 
 # Tree Functions
-* removeDuplicates
+* removeDuplicates - removes duplicate elements in an array
 * buildTree
 * prettyPrint
 * insertValue
