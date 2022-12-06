@@ -6,7 +6,7 @@
 
 # Tree Functions
 * removeDuplicates - removes duplicate elements in an array
-* buildTree
+* buildTree - takes in an array and constructs a binary search tree from elements of array
 * prettyPrint
 * insertValue
 * deleteValue
