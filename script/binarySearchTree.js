@@ -339,3 +339,65 @@ const Tree = (arr) => {
         treeHeight,
     };
 }
+
+// // let b = Tree([1,2,3]);
+
+// let b = Tree([1,1,2,3,4,5]);
+// // console.log(b.prettyPrint(b.root));
+// // console.log(b.height(b.root));
+// // console.log(b.treeHeight(b.root));
+
+
+
+// b.prettyPrint(b.root);
+
+// b.insertValue(30);
+// // b.prettyPrint(b.root);
+
+// b.insertValue(31);
+// // b.prettyPrint(b.root);
+
+// b.insertValue(14);
+// // b.prettyPrint(b.root);
+
+// b.insertValue(17);
+// // b.prettyPrint(b.root);
+
+// b.deleteValue(17);
+// // b.prettyPrint(b.root);
+
+// b.deleteValue(3);
+// // b.prettyPrint(b.root);
+
+// b.prettyPrint(b.root);
+// b.prettyPrint(b.find(4));
+
+// b.prettyPrint(b.root);
+// console.log("Level Order Traversal: ", b.levelOrder());
+
+// console.log("Inorder Traversal: ", b.inorder());
+
+// console.log("Preorder Traversal: ", b.preorder());
+
+// console.log("Postorder Traversal: ", b.postorder());
+
+// console.log("Node Height: ", b.height(b.find(14)));
+// console.log("Node Depth 4: ", b.depth(b.find(4)));
+// console.log("Node Depth 5: ", b.depth(b.find(5)));
+// console.log("Node Depth 30: ", b.depth(b.find(30)));
+// console.log("Node Depth 30: ", b.depth(b.find(14)));
+
+// b.insertValue(32);
+// b.insertValue(33);
+// b.insertValue(34);
+// b.insertValue(35);
+
+// b.prettyPrint(b.root);
+
+// console.log("Is tree balanced:", b.isBalanced());
+
+// b.root = b.rebalance();
+
+// b.prettyPrint(b.root);
+
+// console.log("Is tree balanced:", b.isBalanced());
