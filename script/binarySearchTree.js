@@ -246,7 +246,22 @@ const Tree = (arr) => {
         return result;
     };
 
-    const height = node => {};
+    const height = root => {
+        if(root == null) {
+            return -1;
+        }
+        else {
+            let leftHeight = height(root.leftNode);
+            let rightHeight = height(root.rightNode);
+
+            if(leftHeight > rightHeight) {
+                return (leftHeight + 1);
+            }
+            else {
+                return (rightHeight + 1);
+            }
+        }
+    };
 
     const depth = node => {};
 
@@ -310,3 +325,5 @@ console.log("Inorder Traversal: ", b.inorder());
 console.log("Preorder Traversal: ", b.preorder());
 
 console.log("Postorder Traversal: ", b.postorder());
+
+console.log("Node Height: ", b.height(b.find(14)));
