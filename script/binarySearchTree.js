@@ -283,7 +283,34 @@ const Tree = (arr) => {
         return rec(root);
     };
 
-    const isBalanced = () => {};
+    // find height of binary tree
+    const treeHeight = (root) => {
+        if(root == null) {
+            return 0;
+        }  
+        return Math.max(treeHeight(root.leftNode), treeHeight(root.rightNode)) + 1;
+    } 
+
+    const isBalanced = () => {
+        const rec = (r) => {
+            if(r == null) {
+                return true;
+            }
+    
+            let leftHeight = treeHeight(r.leftNode);
+            let rightHeight = height(r.rightNode);
+    
+            if(Math.abs(leftHeight - rightHeight) <= 1 
+                && rec(r.leftNode) == true 
+                && rec(r.rightNode) == true) {
+                return true;
+            }
+    
+            return false;
+        }
+        
+        return rec(root);
+    };
 
     const rebalance = () => {};
 
@@ -305,12 +332,18 @@ const Tree = (arr) => {
         depth,
         isBalanced,
         rebalance,
+        treeHeight,
     };
 }
 
 // let b = Tree([1,2,3]);
 
 let b = Tree([1,1,2,3,4,5]);
+// console.log(b.prettyPrint(b.root));
+// console.log(b.height(b.root));
+// console.log(b.treeHeight(b.root));
+
+
 
 b.prettyPrint(b.root);
 
@@ -332,8 +365,8 @@ b.deleteValue(17);
 b.deleteValue(3);
 // b.prettyPrint(b.root);
 
-// b.prettyPrint(b.root);
-// b.prettyPrint(b.find(4));
+b.prettyPrint(b.root);
+b.prettyPrint(b.find(4));
 
 b.prettyPrint(b.root);
 console.log("Level Order Traversal: ", b.levelOrder());
@@ -349,3 +382,12 @@ console.log("Node Depth 4: ", b.depth(b.find(4)));
 console.log("Node Depth 5: ", b.depth(b.find(5)));
 console.log("Node Depth 30: ", b.depth(b.find(30)));
 console.log("Node Depth 30: ", b.depth(b.find(14)));
+
+b.insertValue(32);
+b.insertValue(33);
+b.insertValue(34);
+b.insertValue(35);
+
+b.prettyPrint(b.root);
+
+console.log("Is tree balanced:", b.isBalanced());
