@@ -312,7 +312,11 @@ const Tree = (arr) => {
         return rec(root);
     };
 
-    const rebalance = () => {};
+    const rebalance = () => {
+        let inorderArr = inorder();
+        root = buildTree(inorderArr, 0, inorderArr.length - 1)
+        return root;
+    };
 
     let root = buildTree(arr, 0, arr.length - 1);
 
@@ -387,6 +391,12 @@ b.insertValue(32);
 b.insertValue(33);
 b.insertValue(34);
 b.insertValue(35);
+
+b.prettyPrint(b.root);
+
+console.log("Is tree balanced:", b.isBalanced());
+
+b.root = b.rebalance();
 
 b.prettyPrint(b.root);
 
