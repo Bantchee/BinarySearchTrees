@@ -263,7 +263,25 @@ const Tree = (arr) => {
         }
     };
 
-    const depth = node => {};
+    const depth = node => {
+        const rec = (root) => {
+            if(root == null) {
+                return -1;
+            }
+            
+            let dist = -1;
+            
+            if((root.value == node.value) ||
+                (dist = rec(root.leftNode)) >= 0 ||
+                (dist = rec(root.rightNode)) >= 0) {
+                    return dist + 1;
+            }
+        
+            return dist;
+        }
+
+        return rec(root);
+    };
 
     const isBalanced = () => {};
 
@@ -327,3 +345,7 @@ console.log("Preorder Traversal: ", b.preorder());
 console.log("Postorder Traversal: ", b.postorder());
 
 console.log("Node Height: ", b.height(b.find(14)));
+console.log("Node Depth 4: ", b.depth(b.find(4)));
+console.log("Node Depth 5: ", b.depth(b.find(5)));
+console.log("Node Depth 30: ", b.depth(b.find(30)));
+console.log("Node Depth 30: ", b.depth(b.find(14)));
