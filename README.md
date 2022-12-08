@@ -1,10 +1,10 @@
 # BinarySearchTrees
 
-# Factories
+## Factories
 * Node - returns an object consisting of a value, a left node, and right node
 * Tree - takes an array and constructs a binary search tree using Node factory
 
-# Tree Functions
+## Tree Functions
 * removeDuplicates - removes duplicate elements in an array
 * buildTree - takes in an array and constructs a binary search tree from elements of array
 * prettyPrint - visually represents binary tree in console
@@ -20,3 +20,11 @@
 * depth - find the depth of binary tree
 * isBalanced - check if binary search tree is balanced
 * rebalance - rebalance binary search tree
+
+## Contributors
+
+[Jar'Zeno Jarrett (Bantchea)](https://github.com/Bantchee)
+
+## Acknowledgements
+
+[The Odin Project](https://www.theodinproject.com/)
